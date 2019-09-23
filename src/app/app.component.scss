@@ -1,0 +1,25 @@
+table {
+  margin: 50px;
+
+  .large-th {
+    min-width: 550px;
+  }
+
+  .medium-th {
+    min-width: 150px;
+  }
+
+  .small-th {
+    min-width: 150px;
+  }
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

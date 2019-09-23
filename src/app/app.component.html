@@ -1,0 +1,55 @@
+<h1>Material Table Loader with NgRx 8</h1>
+<h4>Cat List Example</h4>
+
+<div *ngIf="dataSource && dataSource.data.length > 0; else loadingOrEmpty">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th class="medium-th" mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Origin Column -->
+    <ng-container matColumnDef="origin">
+      <th class="medium-th" mat-header-cell *matHeaderCellDef> Origin </th>
+      <td mat-cell *matCellDef="let element"> {{element.origin}} </td>
+    </ng-container>
+
+    <!-- Temperament Column -->
+    <ng-container matColumnDef="temperament">
+      <th class="large-th" mat-header-cell *matHeaderCellDef> Temperament </th>
+      <td mat-cell *matCellDef="let element"> {{element.temperament}} </td>
+    </ng-container>
+
+    <!-- Life Span Column -->
+    <ng-container matColumnDef="life_span">
+      <th class="small-th" mat-header-cell *matHeaderCellDef> Life Span </th>
+      <td mat-cell *matCellDef="let element"> {{element.life_span}} </td>
+    </ng-container>
+
+    <!-- Alt Names Column -->
+    <ng-container matColumnDef="alt_names">
+      <th class="small-th" mat-header-cell *matHeaderCellDef> Alt Names </th>
+      <td mat-cell *matCellDef="let element"> {{element.alt_names}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div [style.visibility]="isCatListLoaded && dataSource && dataSource.data.length > 0 ? 'visible' : 'hidden'">
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" data-cy="tablePaginator"> </mat-paginator>
+</div>
+<div *ngIf="isCatListLoaded && dataSource.data.length === 0" class="table-loading-empty text-center">
+  <img class="center" src="https://img.freepik.com/free-photo/pretty-cat-white-banner_122935-76.jpg?size=626&ext=jpg" height=200>
+  <h3><i>Oops</i> it seems there are no cats in the box...</h3>
+</div>
+
+<!-- if the cat's list is still loading-->
+<ng-template #loadingOrEmpty>
+  <div *ngIf="!isCatListLoaded">
+    <mat-progress-spinner color="primary" mode="indeterminate" style="margin:0 auto; margin-top:150px">
+    </mat-progress-spinner>
+  </div>
+</ng-template>
