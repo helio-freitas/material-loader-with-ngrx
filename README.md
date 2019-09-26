@@ -1,6 +1,7 @@
-# MaterialTableLoaderNgrx
+# Material Table Loader with NgRx 8
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+This project aims to exemplify the different "states" that a Component Table could have, using Angular Material and NgRx 8.
+It uses [The Cat API](https://https://thecatapi.com/) as an API example, to populate our table.
 
 ## Development server
 
