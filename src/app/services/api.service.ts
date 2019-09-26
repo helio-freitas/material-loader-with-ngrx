@@ -11,10 +11,7 @@ export class ApiService {
 
   getBreeds() {
     let headers = new HttpHeaders();
-    headers = headers.append(
-      'x-api-key',
-      'b3ca5fbc-146f-4956-850c-f01fada1204d'
-    );
+    headers = headers.append('x-api-key', 'YOUR_OWN_API_KEY_SHOULD_GO_HERE');
     return (
       this.http
         .get(this.APIGetBreed, {

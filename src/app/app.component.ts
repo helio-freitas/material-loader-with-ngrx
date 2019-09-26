@@ -16,6 +16,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  emptyListimg =
+    'https://img.freepik.com/free-photo/pretty-cat-white-banner_122935-76.jpg?size=626&ext=jpg';
   dataSource: MatTableDataSource<Cat>;
   cat$: Observable<CatState>;
   catSubscription: Subscription;
@@ -47,6 +49,10 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe();
     this.store.dispatch(CatActions.BeginGetCatsAction());
+  }
+
+  isDataSourceEmpty(): boolean {
+    return this.dataSource && this.dataSource.data.length === 0;
   }
 
   ngOnDestroy() {

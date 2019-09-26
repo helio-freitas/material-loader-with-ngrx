@@ -1,7 +1,7 @@
 <h1>Material Table Loader with NgRx 8</h1>
 <h4>Cat List Example</h4>
 
-<div *ngIf="dataSource && dataSource.data.length > 0; else loadingOrEmpty">
+<div *ngIf="!isDataSourceEmpty(); else loadingOrEmpty">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -38,15 +38,15 @@
   </table>
 </div>
 
-<div [style.visibility]="isCatListLoaded && dataSource && dataSource.data.length > 0 ? 'visible' : 'hidden'">
+<div [style.visibility]="isCatListLoaded && !isDataSourceEmpty() ? 'visible' : 'hidden'">
   <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" data-cy="tablePaginator"> </mat-paginator>
 </div>
-<div *ngIf="isCatListLoaded && dataSource.data.length === 0" class="table-loading-empty text-center">
-  <img class="center" src="https://img.freepik.com/free-photo/pretty-cat-white-banner_122935-76.jpg?size=626&ext=jpg" height=200>
+<div *ngIf="isCatListLoaded && isDataSourceEmpty()" class="table-loading-empty text-center">
+  <img class="center" [src]="emptyListimg" height=200 alt="empty list">
   <h3><i>Oops</i> it seems there are no cats in the box...</h3>
 </div>
 
-<!-- if the cat's list is still loading-->
+<!-- if the cat list is still loading-->
 <ng-template #loadingOrEmpty>
   <div *ngIf="!isCatListLoaded">
     <mat-progress-spinner color="primary" mode="indeterminate" style="margin:0 auto; margin-top:150px">

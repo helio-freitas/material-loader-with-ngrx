@@ -17,7 +17,7 @@ export class CatEffects {
       mergeMap(action =>
         this.apiService.getBreeds().pipe(
           map((data: Cat[]) => {
-            //data = []; // little hack to test an empty response from the API
+            // data = []; // little hack to test an empty response from the API
             return CatActions.SuccessGetCatsAction({ payload: data });
           }),
           catchError((error: Error) => {
